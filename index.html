@@ -1281,29 +1281,22 @@ document.querySelectorAll('.faq-question').forEach(question => {
     // Collect raw values via ASCII names
     const v = Object.fromEntries(new FormData(form));
 
-    // Build formatted Hebrew email body
-    const body = [
-      'שם מלא:        ' + (v.name       || '—'),
-      'טלפון:         ' + (v.phone      || '—'),
-      'שם חברה:       ' + (v.company    || '—'),
-      'מספר עובדים:   ' + (v.workers    || '—'),
-      'אזור בארץ:     ' + (v.area       || '—'),
-      'מקצוע נדרש:    ' + (v.profession || '—'),
-      '',
-      'פרטי הפרויקט:',
-      (v.details || '—'),
-    ].join('\n');
-
-    // Send as JSON (always UTF-8) to avoid Hebrew encoding issues
+    // Send as JSON — Hebrew keys become the field labels in the email
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          access_key: _k.join('-'),
-          subject:    'פנייה חדשה מ-' + v.name + ' — ינאי פרסונל',
-          from_name:  'Yanai Personal',
-          message:    body,
+          access_key:      _k.join('-'),
+          subject:         'פנייה חדשה מ-' + v.name + ' — ינאי פרסונל',
+          from_name:       'Yanai Personal',
+          'שם מלא':        v.name        || '—',
+          'טלפון':         v.phone       || '—',
+          'שם חברה':       v.company     || '—',
+          'מספר עובדים':   v.workers     || '—',
+          'אזור בארץ':     v.area        || '—',
+          'מקצוע נדרש':    v.profession  || '—',
+          'פרטי הפרויקט':  v.details     || '—',
         })
       });
       const json = await res.json();
