@@ -468,7 +468,7 @@ footer {
 }
 .footer-inner {
   max-width: 1200px; margin: 0 auto;
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; align-items: start;
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; align-items: start;
 }
 .footer-logo img { height: 44px; filter: brightness(0) invert(1); opacity: 0.8; }
 .footer-links { display: grid; gap: 12px; }
@@ -680,13 +680,88 @@ footer {
   .prof-grid, .why-grid, .testi-grid, .steps-wrap, .gallery-grid { grid-template-columns: 1fr; }
   .contact-wrap { grid-template-columns: 1fr; gap: 50px; }
   .contact-form-box { padding: 30px 20px; }
-  .footer-inner { grid-template-columns: 1fr; text-align: center; }
+  .footer-inner { grid-template-columns: 1fr 1fr; text-align: center; }
   .footer-logo, .footer-links { justify-content: center; align-items: center; }
+}
+@media (max-width: 540px) {
+  .footer-inner { grid-template-columns: 1fr; }
+}
+
+/* ─── SKIP LINK ─── */
+.skip-link {
+  position: absolute; top: -100%; right: 50%; transform: translateX(50%);
+  background: var(--lime); color: var(--green);
+  font-weight: 800; padding: 14px 28px; border-radius: 0 0 12px 12px;
+  z-index: 9999; font-size: 15px; white-space: nowrap;
+  transition: top 0.2s ease;
+}
+.skip-link:focus { top: 0; }
+
+/* ─── ENHANCED FOCUS ─── */
+:focus-visible {
+  outline: 3px solid var(--lime);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ─── MODAL ─── */
+.modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 9000;
+  background: rgba(0,0,0,0.65); backdrop-filter: blur(4px);
+  overflow-y: auto; padding: 40px 24px;
+}
+.modal-overlay.open {
+  display: flex; align-items: flex-start; justify-content: center;
+}
+.modal-box {
+  background: #fff; border-radius: 16px; max-width: 720px; width: 100%;
+  padding: 48px; position: relative; margin: auto;
+  direction: rtl; max-height: 88vh; overflow-y: auto;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+  animation: modal-in 0.25s ease;
+}
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.modal-close-btn {
+  position: absolute; top: 16px; left: 16px;
+  background: none; border: 2px solid transparent; cursor: pointer;
+  font-size: 20px; color: var(--gray); line-height: 1;
+  width: 44px; height: 44px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition); font-family: inherit;
+}
+.modal-close-btn:hover { background: var(--lime-soft); color: var(--green); }
+.modal-close-btn:focus-visible { border-color: var(--lime); }
+.modal-title { font-size: 24px; font-weight: 800; color: var(--green); margin-bottom: 6px; }
+.modal-updated { font-size: 13px; color: var(--gray-light); margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+.modal-body h2 { font-size: 17px; font-weight: 800; color: var(--dark); margin: 28px 0 10px; }
+.modal-body p { font-size: 15px; line-height: 1.85; color: var(--gray); margin-bottom: 14px; }
+.modal-body ul, .modal-body ol { padding-right: 22px; margin-bottom: 14px; }
+.modal-body li { font-size: 15px; line-height: 1.75; color: var(--gray); margin-bottom: 5px; }
+.modal-body a { color: var(--green); text-decoration: underline; }
+
+/* ─── FOOTER LEGAL BUTTONS ─── */
+.footer-legal-btn {
+  background: none; border: none; cursor: pointer;
+  font-size: 15px; color: rgba(255,255,255,0.6);
+  font-family: inherit; text-align: right; padding: 0;
+  transition: var(--transition); display: block; width: 100%;
+}
+.footer-legal-btn:hover { color: var(--lime); padding-right: 5px; }
+
+/* ─── FAQ BUTTON RESET ─── */
+.faq-question {
+  background: none; border: none; width: 100%; text-align: right;
+  font-family: inherit; cursor: pointer;
 }
 
 </style>
 </head>
 <body>
+
+<a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
 
 <!-- ══════════ NAV ══════════ -->
 <header id="hdr">
@@ -709,6 +784,8 @@ footer {
     </ul>
   </div>
 </header>
+
+<main id="main-content">
 
 <!-- ══════════ HERO ══════════ -->
 <section class="hero">
@@ -1095,32 +1172,32 @@ footer {
           <input type="hidden" name="redirect" value="false">
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
             <div class="fg">
-              <label style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">שם מלא *</label>
-              <input type="text" name="name" placeholder="שמכם המלא" required>
+              <label for="f-name" style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">שם מלא *</label>
+              <input id="f-name" type="text" name="name" placeholder="שמכם המלא" required autocomplete="name">
             </div>
             <div class="fg">
-              <label style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">טלפון *</label>
-              <input type="tel" name="phone" placeholder="05X-XXXXXXX" required>
-            </div>
-          </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
-            <div class="fg">
-              <label style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">שם חברה</label>
-              <input type="text" name="company" placeholder="שם החברה / הקבלן">
-            </div>
-            <div class="fg">
-              <label style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">מספר עובדים דרוש</label>
-              <input type="number" name="workers" placeholder="כמות עובדים">
+              <label for="f-phone" style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">טלפון *</label>
+              <input id="f-phone" type="tel" name="phone" placeholder="05X-XXXXXXX" required autocomplete="tel">
             </div>
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
             <div class="fg">
-              <label style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">אזור בארץ</label>
-              <input type="text" name="area" placeholder="מיקום הפרויקט">
+              <label for="f-company" style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">שם חברה</label>
+              <input id="f-company" type="text" name="company" placeholder="שם החברה / הקבלן" autocomplete="organization">
             </div>
             <div class="fg">
-              <label style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">מקצוע נדרש</label>
-              <select name="profession">
+              <label for="f-workers" style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">מספר עובדים דרוש</label>
+              <input id="f-workers" type="number" name="workers" placeholder="כמות עובדים" min="1">
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+            <div class="fg">
+              <label for="f-area" style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">אזור בארץ</label>
+              <input id="f-area" type="text" name="area" placeholder="מיקום הפרויקט">
+            </div>
+            <div class="fg">
+              <label for="f-profession" style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">מקצוע נדרש</label>
+              <select id="f-profession" name="profession">
                 <option value="">-- בחרו --</option>
                 <option>רצפים</option>
                 <option>טייחים</option>
@@ -1131,8 +1208,8 @@ footer {
             </div>
           </div>
           <div class="fg" style="margin-bottom: 24px;">
-            <label style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">פרטי הפרויקט</label>
-            <textarea name="details" placeholder="מיקום הפרויקט, לוח זמנים, כל פרט שיסייע לנו..." style="min-height: 120px;"></textarea>
+            <label for="f-details" style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">פרטי הפרויקט</label>
+            <textarea id="f-details" name="details" placeholder="מיקום הפרויקט, לוח זמנים, כל פרט שיסייע לנו..." style="min-height: 120px;"></textarea>
           </div>
           <button type="submit" class="form-submit">שלחו לי פרטים עכשיו</button>
           <div class="form-success" id="formOK">
@@ -1154,24 +1231,26 @@ footer {
     </div>
     <div class="faq-grid">
       <div class="faq-item">
-        <div class="faq-question">מהם האתגרים הבירוקרטיים המרכזיים בהעסקת עובדים זרים? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
-        <div class="faq-answer">המעסיקים נדרשים להתמודד עם הליך קבלת היתרים מורכב, עמידה בתקנות מחמירות, ביקורות ממשלתיות מתמשכות ודרישות לחידוש מסמכים באופן תקופתי. ינאי פרסונל מטפלת בכל התהליך עבורכם.</div>
+        <button class="faq-question" aria-expanded="false" aria-controls="faqA1">מהם האתגרים הבירוקרטיים המרכזיים בהעסקת עובדים זרים? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-answer" id="faqA1" role="region">המעסיקים נדרשים להתמודד עם הליך קבלת היתרים מורכב, עמידה בתקנות מחמירות, ביקורות ממשלתיות מתמשכות ודרישות לחידוש מסמכים באופן תקופתי. ינאי פרסונל מטפלת בכל התהליך עבורכם.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-question">כיצד ניתן לצמצם פערי שפה ותרבות בקרב עובדים זרים? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
-        <div class="faq-answer">ניתן לשלב מתורגמנים, לספק הדרכות בשפת העובדים, להשתמש באמצעים חזותיים להוראות עבודה וליישם טכנולוגיות תרגום בזמן אמת. אנחנו מספקים ליווי מקצועי לגישור על פערים אלו.</div>
+        <button class="faq-question" aria-expanded="false" aria-controls="faqA2">כיצד ניתן לצמצם פערי שפה ותרבות בקרב עובדים זרים? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-answer" id="faqA2" role="region">ניתן לשלב מתורגמנים, לספק הדרכות בשפת העובדים, להשתמש באמצעים חזותיים להוראות עבודה וליישם טכנולוגיות תרגום בזמן אמת. אנחנו מספקים ליווי מקצועי לגישור על פערים אלו.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-question">האם העסקת עובדים זרים פוגעת בכוח העבודה המקומי? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
-        <div class="faq-answer">לא בהכרח. רבים מהעובדים הזרים ממלאים תפקידים שאין בהם היצע מספיק של עובדים מקומיים, והם מסייעים בקידום פרויקטים חשובים למשק הישראלי.</div>
+        <button class="faq-question" aria-expanded="false" aria-controls="faqA3">האם העסקת עובדים זרים פוגעת בכוח העבודה המקומי? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-answer" id="faqA3" role="region">לא בהכרח. רבים מהעובדים הזרים ממלאים תפקידים שאין בהם היצע מספיק של עובדים מקומיים, והם מסייעים בקידום פרויקטים חשובים למשק הישראלי.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-question">מהם הפתרונות שיכולים להקל על תהליך הגיוס? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
-        <div class="faq-answer">עבודה עם תאגיד מורשה כמו ינאי פרסונל מבטיחה סינון מועמדים קפדני, ניהול משאבי אנוש מתקדם ותקשורת רציפה, מה שהופך את התהליך ליעיל ומהיר יותר.</div>
+        <button class="faq-question" aria-expanded="false" aria-controls="faqA4">מהם הפתרונות שיכולים להקל על תהליך הגיוס? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-answer" id="faqA4" role="region">עבודה עם תאגיד מורשה כמו ינאי פרסונל מבטיחה סינון מועמדים קפדני, ניהול משאבי אנוש מתקדם ותקשורת רציפה, מה שהופך את התהליך ליעיל ומהיר יותר.</div>
       </div>
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- ══════════ FOOTER ══════════ -->
 <footer>
@@ -1191,21 +1270,185 @@ footer {
       <a href="#testimonials">המלצות</a>
       <a href="#contact">צרו קשר</a>
     </div>
+    <div class="footer-links">
+      <div style="font-weight: 800; color: #fff; margin-bottom: 12px;">מסמכים משפטיים</div>
+      <button class="footer-legal-btn" onclick="openModal('modalPrivacy')">מדיניות פרטיות</button>
+      <button class="footer-legal-btn" onclick="openModal('modalTerms')">תנאי שימוש</button>
+      <button class="footer-legal-btn" onclick="openModal('modalAccess')">הצהרת נגישות</button>
+    </div>
     <div>
       <div style="font-weight: 800; color: #fff; margin-bottom: 12px;">פרטי קשר</div>
-      <p style="font-size: 15px; margin-bottom: 12px;">טלפון: 054-233-1748</p>
-      <p style="font-size: 15px; margin-bottom: 12px;">מייל: office@yanai-p.co.il</p>
-      <p style="font-size: 15px;">שעות פעילות: א'-ה' 08:00-18:00</p>
+      <p style="font-size: 15px; margin-bottom: 12px;">טלפון: <a href="tel:0542331748" style="color:inherit;">054-233-1748</a></p>
+      <p style="font-size: 15px; margin-bottom: 12px;">מייל: <a href="mailto:office@yanai-p.co.il" style="color:inherit;">office@yanai-p.co.il</a></p>
+      <p style="font-size: 15px;">שעות פעילות: א'–ה' 08:00–18:00</p>
     </div>
   </div>
   <div class="footer-bottom">
     <div class="footer-copy">© 2025 ינאי פרסונל. כל הזכויות שמורות.</div>
-    <div style="display: flex; gap: 20px;">
-      <a href="#" style="color: inherit;">מדיניות פרטיות</a>
-      <a href="#" style="color: inherit;">תנאי שימוש</a>
-    </div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.35);">נבנה בהתאם לתקן נגישות ישראלי 5568</div>
   </div>
 </footer>
+
+<!-- ══════════ MODAL: PRIVACY POLICY ══════════ -->
+<div id="modalPrivacy" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalPrivacyTitle" aria-hidden="true">
+  <div class="modal-box">
+    <button class="modal-close-btn" onclick="closeModal('modalPrivacy')" aria-label="סגור חלון">✕</button>
+    <h1 class="modal-title" id="modalPrivacyTitle">מדיניות פרטיות</h1>
+    <p class="modal-updated">עודכן לאחרונה: מאי 2025</p>
+    <div class="modal-body">
+      <p>ינאי פרסונל בע"מ (להלן: "החברה") מכבדת את פרטיות המשתמשים באתר <strong>yanai-p.co.il</strong>. מדיניות זו מסבירה אילו נתונים נאספים, כיצד הם משמשים ומה זכויותיך לפי <strong>חוק הגנת הפרטיות, התשמ"א–1981</strong> ותקנות הגנת הפרטיות (אבטחת מידע), התשע"ז–2017.</p>
+
+      <h2>1. מידע הנאסף</h2>
+      <p>בעת שימוש בטופס יצירת הקשר באתר, אנו עשויים לאסוף את הפרטים הבאים:</p>
+      <ul>
+        <li>שם מלא</li>
+        <li>מספר טלפון</li>
+        <li>שם חברה / קבלן</li>
+        <li>פרטי הפרויקט (מקצוע, מיקום, כמות עובדים)</li>
+      </ul>
+      <p>האתר אינו אוסף מידע רגיש כמשמעותו בחוק הגנת הפרטיות. אנו אינם אוספים כתובות IP, עוגיות מזהות (tracking cookies) או כל מידע אחר ללא ידיעתך.</p>
+
+      <h2>2. מטרות השימוש במידע</h2>
+      <p>המידע שנמסר ישמש אך ורק למטרות הבאות:</p>
+      <ul>
+        <li>חזרה אליך בנוגע לפנייתך ומתן הצעת מחיר</li>
+        <li>יצירת קשר עסקי בנוגע לשירותי כוח אדם</li>
+        <li>מתן מענה לפניות ושאלות</li>
+      </ul>
+      <p>לא ייעשה שימוש במידע לצרכי שיווק ישיר ללא הסכמתך המפורשת מראש.</p>
+
+      <h2>3. מסירת מידע לצדדים שלישיים</h2>
+      <p>המידע שנאסף מועבר לשירות עיבוד הטפסים <strong>Web3Forms</strong> (web3forms.com) לצורך שליחת הטופס בלבד. שירות זה כפוף למדיניות הפרטיות שלו ואינו שומר את הנתונים לאחר העברה. החברה אינה מוכרת, מעבירה או חושפת מידע אישי לכל גורם שלישי אחר, למעט כאשר נדרש על פי חוק.</p>
+
+      <h2>4. אחסון ואבטחת מידע</h2>
+      <p>החברה נוקטת באמצעי אבטחה סבירים להגנה על המידע שנמסר. העברת הנתונים מבוצעת דרך חיבור מוצפן (HTTPS). המידע נשמר לתקופה הנדרשת לצורך מתן השירות ולא מעבר לכך.</p>
+
+      <h2>5. זכויות המשתמש</h2>
+      <p>בהתאם לחוק הגנת הפרטיות, התשמ"א–1981, עומדות לך הזכויות הבאות:</p>
+      <ul>
+        <li><strong>זכות עיון</strong> – לעיין במידע השמור אודותיך</li>
+        <li><strong>זכות תיקון</strong> – לתקן מידע שגוי או לא מדויק</li>
+        <li><strong>זכות מחיקה</strong> – לבקש מחיקת המידע שנאסף</li>
+        <li><strong>זכות התנגדות</strong> – להתנגד לעיבוד המידע לצרכי שיווק</li>
+      </ul>
+      <p>לממש זכויות אלו, פנה אלינו בדוא"ל: <a href="mailto:office@yanai-p.co.il">office@yanai-p.co.il</a></p>
+
+      <h2>6. צרו קשר – ממונה על הגנת הפרטיות</h2>
+      <p>לכל שאלה הנוגעת למדיניות פרטיות זו ניתן לפנות אל:</p>
+      <ul>
+        <li>ינאי פרסונל בע"מ, ממונה על הגנת הפרטיות</li>
+        <li>דוא"ל: <a href="mailto:office@yanai-p.co.il">office@yanai-p.co.il</a></li>
+        <li>טלפון: <a href="tel:0542331748">054-233-1748</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ MODAL: TERMS OF USE ══════════ -->
+<div id="modalTerms" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTermsTitle" aria-hidden="true">
+  <div class="modal-box">
+    <button class="modal-close-btn" onclick="closeModal('modalTerms')" aria-label="סגור חלון">✕</button>
+    <h1 class="modal-title" id="modalTermsTitle">תנאי שימוש</h1>
+    <p class="modal-updated">עודכן לאחרונה: מאי 2025</p>
+    <div class="modal-body">
+      <p>ברוכים הבאים לאתר <strong>yanai-p.co.il</strong> של ינאי פרסונל בע"מ (להלן: "החברה"). השימוש באתר כפוף לתנאים המפורטים להלן. בכניסתך לאתר ובשימושך בו, אתה מאשר כי קראת, הבנת ומסכים לתנאים אלו. אם אינך מסכים, נא הפסק את השימוש באתר.</p>
+
+      <h2>1. מהות האתר והשירות</h2>
+      <p>אתר זה הינו אתר שיווקי של ינאי פרסונל בע"מ, תאגיד מורשה להעסקת עובדים זרים בענף הבנייה. האתר מספק מידע כללי על שירותי החברה ומאפשר פנייה ראשונית ליצירת קשר. האתר אינו מהווה הצעה מחייבת לכריתת חוזה.</p>
+
+      <h2>2. שימוש מותר</h2>
+      <p>מותר להשתמש באתר לצורך:</p>
+      <ul>
+        <li>קבלת מידע על שירותי החברה</li>
+        <li>פנייה ראשונית ליצירת קשר עסקי</li>
+        <li>עיון בתוכן האתר לצורך אישי</li>
+      </ul>
+      <p>אסור לעשות שימוש באתר לכל מטרה בלתי חוקית, פוגעת, מטעה או מזיקה. אסור לנסות לפרוץ, להשבית או להפריע לתפקוד האתר.</p>
+
+      <h2>3. קניין רוחני</h2>
+      <p>כל התכנים באתר, לרבות טקסט, תמונות, לוגו, גרפיקה ועיצוב, הינם קניינה הבלעדי של ינאי פרסונל בע"מ או מורשי שימוש שלה, ומוגנים בחוק זכות יוצרים ישראלי ובינלאומי. אין להעתיק, לפרסם מחדש, לשדר או להפיץ כל חלק מתוכן האתר ללא אישור מפורש ובכתב מהחברה.</p>
+
+      <h2>4. הגבלת אחריות</h2>
+      <p>האתר מסופק "כמות שהוא" (as-is). החברה אינה מתחייבת כי:</p>
+      <ul>
+        <li>האתר יפעל ללא הפרעות או שגיאות</li>
+        <li>המידע באתר מעודכן בכל עת</li>
+        <li>האתר יהיה נקי מווירוסים או תוכנות עוינות</li>
+      </ul>
+      <p>החברה לא תישא באחריות לכל נזק ישיר, עקיף, מקרי או תוצאתי הנובע משימוש באתר או מאי-יכולת להשתמש בו.</p>
+
+      <h2>5. קישורים חיצוניים</h2>
+      <p>האתר עשוי להכיל קישורים לאתרי צד שלישי (כגון WhatsApp). קישורים אלו מסופקים לנוחות בלבד; החברה אינה אחראית לתוכן, מדיניות הפרטיות או הפעילות של אתרים חיצוניים.</p>
+
+      <h2>6. שינויים בתנאי השימוש</h2>
+      <p>החברה שומרת לעצמה את הזכות לשנות תנאים אלו בכל עת. שינויים יכנסו לתוקף עם פרסומם באתר. המשך השימוש לאחר הפרסום מהווה הסכמה לתנאים המעודכנים.</p>
+
+      <h2>7. דין וסמכות שיפוט</h2>
+      <p>תנאי שימוש אלו כפופים לדיני מדינת ישראל. כל סכסוך הנוגע לאתר או לתנאים אלו יתברר בבתי המשפט המוסמכים במחוז תל אביב–יפו, ולהם בלבד תהיה סמכות שיפוט בלעדית.</p>
+
+      <h2>8. יצירת קשר</h2>
+      <p>לכל שאלה הנוגעת לתנאי שימוש אלו ניתן לפנות אל:</p>
+      <ul>
+        <li>ינאי פרסונל בע"מ</li>
+        <li>דוא"ל: <a href="mailto:office@yanai-p.co.il">office@yanai-p.co.il</a></li>
+        <li>טלפון: <a href="tel:0542331748">054-233-1748</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ MODAL: ACCESSIBILITY STATEMENT ══════════ -->
+<div id="modalAccess" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalAccessTitle" aria-hidden="true">
+  <div class="modal-box">
+    <button class="modal-close-btn" onclick="closeModal('modalAccess')" aria-label="סגור חלון">✕</button>
+    <h1 class="modal-title" id="modalAccessTitle">הצהרת נגישות</h1>
+    <p class="modal-updated">תאריך בדיקה אחרונה: מאי 2025</p>
+    <div class="modal-body">
+      <p>ינאי פרסונל בע"מ מחויבת לנגישות דיגיטלית עבור כלל המשתמשים, לרבות אנשים עם מוגבלות. אנו פועלים לפי <strong>תקן ישראלי 5568</strong> (המבוסס על WCAG 2.1, רמה AA) ובהתאם ל<strong>תקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע"ג–2013</strong>.</p>
+
+      <h2>רמת הנגישות הנוכחית</h2>
+      <p>האתר עומד ברמת התאמה <strong>AA</strong> של תקן WCAG 2.1 בהיבטים הבאים:</p>
+      <ul>
+        <li>האתר בנוי עם כיוון כתיבה מימין לשמאל (RTL) בעברית תקנית</li>
+        <li>ניתן לדלג לתוכן הראשי בעזרת קישור "דלג לתוכן הראשי" בתחילת העמוד</li>
+        <li>כל הדפים כוללים כותרות (headings) בהיררכיה תקנית</li>
+        <li>תמונות כוללות טקסט חלופי (alt text) מתאר</li>
+        <li>ניגודיות הצבעים עומדת ביחס מינימלי של 4.5:1</li>
+        <li>ניתן לנווט באתר באמצעות מקלדת בלבד</li>
+        <li>חלוניות קופצות (modals) כוללות ניהול פוקוס ותמיכה במקש Escape</li>
+        <li>טפסים כוללים תוויות (labels) מקושרות לשדות</li>
+        <li>כפתורים ואלמנטים אינטראקטיביים כוללים תיאורים נגישים</li>
+        <li>האתר מוצג נכון בהגדלה של עד 200% ללא אובדן תוכן</li>
+      </ul>
+
+      <h2>מגבלות ידועות</h2>
+      <p>אנו ממשיכים לשפר את נגישות האתר. כרגע ידועות המגבלות הבאות:</p>
+      <ul>
+        <li>חלק מהתמונות הגרפיות אינן כוללות תיאור מורחב (long description)</li>
+        <li>סרטוני וידאו עתידיים יכללו כתוביות ותמלול</li>
+      </ul>
+
+      <h2>דיווח על בעיית נגישות</h2>
+      <p>נתקלת בבעיית נגישות? אנו מעוניינים לדעת ולתקן. פנה אלינו:</p>
+      <ul>
+        <li><strong>שם רכז הנגישות:</strong> ינאי פרסונל בע"מ</li>
+        <li><strong>דוא"ל:</strong> <a href="mailto:office@yanai-p.co.il">office@yanai-p.co.il</a></li>
+        <li><strong>טלפון:</strong> <a href="tel:0542331748">054-233-1748</a></li>
+        <li><strong>שעות מענה:</strong> א'–ה' 08:00–18:00</li>
+      </ul>
+      <p>נשתדל להגיב תוך 5 ימי עסקים ולטפל בבעיה בהקדם האפשרי.</p>
+
+      <h2>אמצעי נגישות נתמכים</h2>
+      <p>האתר נבדק ונתמך בשילובי הגישה הנפוצים הבאים:</p>
+      <ul>
+        <li>קוראי מסך: NVDA + Firefox, JAWS + Chrome</li>
+        <li>ניווט מקלדת: Tab, Shift+Tab, Enter, Space, Escape</li>
+        <li>מצב ניגודיות גבוהה ב-Windows</li>
+        <li>הגדלת טקסט עד 200% בדפדפן</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 <!-- ══════════ FLOATING WA ══════════ -->
 <div class="float-cta">
@@ -1260,8 +1503,55 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 document.querySelectorAll('.faq-question').forEach(question => {
   question.addEventListener('click', () => {
     const item = question.parentElement;
-    item.classList.toggle('active');
+    const isOpen = item.classList.toggle('active');
+    question.setAttribute('aria-expanded', isOpen);
   });
+});
+
+// ── Modal helpers ──
+const FOCUSABLE = 'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+function openModal(id) {
+  const overlay = document.getElementById(id);
+  if (!overlay) return;
+  overlay.setAttribute('aria-hidden', 'false');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  const firstFocusable = overlay.querySelector(FOCUSABLE);
+  if (firstFocusable) firstFocusable.focus();
+  overlay._opener = document.activeElement;
+}
+
+function closeModal(id) {
+  const overlay = document.getElementById(id);
+  if (!overlay) return;
+  overlay.setAttribute('aria-hidden', 'true');
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+  if (overlay._opener) overlay._opener.focus();
+}
+
+// Close on overlay click (outside modal-box)
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) closeModal(overlay.id);
+  });
+});
+
+// Close on Escape key + focus trap
+document.addEventListener('keydown', e => {
+  const openModal = document.querySelector('.modal-overlay.open');
+  if (!openModal) return;
+  if (e.key === 'Escape') { closeModal(openModal.id); return; }
+  if (e.key !== 'Tab') return;
+  const focusable = [...openModal.querySelectorAll(FOCUSABLE)];
+  if (!focusable.length) return;
+  const first = focusable[0], last = focusable[focusable.length - 1];
+  if (e.shiftKey) {
+    if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+  } else {
+    if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
 });
 
 // Form Handling — Web3Forms
