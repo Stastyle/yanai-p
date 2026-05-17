@@ -1294,17 +1294,17 @@ document.querySelectorAll('.faq-question').forEach(question => {
       (v.details || '—'),
     ].join('\n');
 
-    // Send only formatted payload — no raw English field names
-    const data = new FormData();
-    data.append('access_key',  _k.join('-'));
-    data.append('subject',     'פנייה חדשה מ-' + v.name + ' — ינאי פרסונל');
-    data.append('from_name',   'ינאי פרסונל אתר');
-    data.append('redirect',    'false');
-    data.append('message',     body);
-
+    // Send as JSON (always UTF-8) to avoid Hebrew encoding issues
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST', body: data
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: _k.join('-'),
+          subject:    'פנייה חדשה מ-' + v.name + ' — ינאי פרסונל',
+          from_name:  'Yanai Personal',
+          message:    body,
+        })
       });
       const json = await res.json();
 
