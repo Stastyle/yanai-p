@@ -1281,23 +1281,18 @@ document.querySelectorAll('.faq-question').forEach(question => {
     // Collect raw values via ASCII names
     const v = Object.fromEntries(new FormData(form));
 
-    // Build HTML-formatted table for the email body
-    const row = (label, val, bg) =>
-      `<tr style="background:${bg}">` +
-      `<td style="padding:9px 14px;border:1px solid #ddd;font-weight:bold;width:38%;direction:rtl;">${label}</td>` +
-      `<td style="padding:9px 14px;border:1px solid #ddd;direction:rtl;">${(val || '—').replace(/\n/g,'<br>')}</td>` +
-      `</tr>`;
-    const message =
-      `<div dir="rtl" style="font-family:Arial,sans-serif;font-size:14px;">` +
-      `<table style="width:100%;border-collapse:collapse;">` +
-      row('שם מלא',        v.name,       '#f9f9f9') +
-      row('טלפון',         v.phone,      '#ffffff') +
-      row('שם חברה',       v.company,    '#f9f9f9') +
-      row('מספר עובדים',   v.workers,    '#ffffff') +
-      row('אזור בארץ',     v.area,       '#f9f9f9') +
-      row('מקצוע נדרש',    v.profession, '#ffffff') +
-      row('פרטי הפרויקט',  v.details,    '#f9f9f9') +
-      `</table></div>`;
+    const line = (label, val) => `${label}: ${val || '—'}`;
+    const message = [
+      line('שם מלא',       v.name),
+      line('טלפון',        v.phone),
+      line('שם חברה',      v.company),
+      line('מספר עובדים',  v.workers),
+      line('אזור בארץ',    v.area),
+      line('מקצוע נדרש',   v.profession),
+      '',
+      'פרטי הפרויקט:',
+      v.details || '—',
+    ].join('\n');
 
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
