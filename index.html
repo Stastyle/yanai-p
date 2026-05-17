@@ -1096,31 +1096,31 @@ footer {
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
             <div class="fg">
               <label style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">שם מלא *</label>
-              <input type="text" name="שם מלא" placeholder="שמכם המלא" required>
+              <input type="text" name="name" placeholder="שמכם המלא" required>
             </div>
             <div class="fg">
               <label style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">טלפון *</label>
-              <input type="tel" name="טלפון" placeholder="05X-XXXXXXX" required>
+              <input type="tel" name="phone" placeholder="05X-XXXXXXX" required>
             </div>
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
             <div class="fg">
               <label style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">שם חברה</label>
-              <input type="text" name="שם חברה" placeholder="שם החברה / הקבלן">
+              <input type="text" name="company" placeholder="שם החברה / הקבלן">
             </div>
             <div class="fg">
               <label style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">מספר עובדים דרוש</label>
-              <input type="number" name="מספר עובדים" placeholder="כמות עובדים">
+              <input type="number" name="workers" placeholder="כמות עובדים">
             </div>
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
             <div class="fg">
               <label style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">אזור בארץ</label>
-              <input type="text" name="אזור בארץ" placeholder="מיקום הפרויקט">
+              <input type="text" name="area" placeholder="מיקום הפרויקט">
             </div>
             <div class="fg">
               <label style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">מקצוע נדרש</label>
-              <select name="מקצוע נדרש">
+              <select name="profession">
                 <option value="">-- בחרו --</option>
                 <option>רצפים</option>
                 <option>טייחים</option>
@@ -1132,7 +1132,7 @@ footer {
           </div>
           <div class="fg" style="margin-bottom: 24px;">
             <label style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">פרטי הפרויקט</label>
-            <textarea name="פרטי הפרויקט" placeholder="מיקום הפרויקט, לוח זמנים, כל פרט שיסייע לנו..." style="min-height: 120px;"></textarea>
+            <textarea name="details" placeholder="מיקום הפרויקט, לוח זמנים, כל פרט שיסייע לנו..." style="min-height: 120px;"></textarea>
           </div>
           <button type="submit" class="form-submit">שלחו לי פרטים עכשיו</button>
           <div class="form-success" id="formOK">
@@ -1278,8 +1278,29 @@ document.querySelectorAll('.faq-question').forEach(question => {
     btn.textContent = 'שולח...';
     btn.disabled = true;
 
-    const data = new FormData(form);
-    data.append('access_key', _k.join('-'));
+    // Collect raw values via ASCII names
+    const v = Object.fromEntries(new FormData(form));
+
+    // Build formatted Hebrew email body
+    const body = [
+      'שם מלא:        ' + (v.name       || '—'),
+      'טלפון:         ' + (v.phone      || '—'),
+      'שם חברה:       ' + (v.company    || '—'),
+      'מספר עובדים:   ' + (v.workers    || '—'),
+      'אזור בארץ:     ' + (v.area       || '—'),
+      'מקצוע נדרש:    ' + (v.profession || '—'),
+      '',
+      'פרטי הפרויקט:',
+      (v.details || '—'),
+    ].join('\n');
+
+    // Send only formatted payload — no raw English field names
+    const data = new FormData();
+    data.append('access_key',  _k.join('-'));
+    data.append('subject',     'פנייה חדשה מ-' + v.name + ' — ינאי פרסונל');
+    data.append('from_name',   'ינאי פרסונל אתר');
+    data.append('redirect',    'false');
+    data.append('message',     body);
 
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
