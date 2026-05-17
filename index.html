@@ -1281,19 +1281,6 @@ document.querySelectorAll('.faq-question').forEach(question => {
     // Collect raw values via ASCII names
     const v = Object.fromEntries(new FormData(form));
 
-    const line = (label, val) => `${label}: ${val || '—'}`;
-    const message = [
-      line('שם מלא',       v.name),
-      line('טלפון',        v.phone),
-      line('שם חברה',      v.company),
-      line('מספר עובדים',  v.workers),
-      line('אזור בארץ',    v.area),
-      line('מקצוע נדרש',   v.profession),
-      '',
-      'פרטי הפרויקט:',
-      v.details || '—',
-    ].join('\n');
-
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -1302,7 +1289,13 @@ document.querySelectorAll('.faq-question').forEach(question => {
           access_key: _k.join('-'),
           subject:    'פנייה חדשה מ-' + v.name + ' — ינאי פרסונל',
           from_name:  'Yanai Personal',
-          message:    message,
+          name:       v.name       || '—',
+          phone:      v.phone      || '—',
+          company:    v.company    || '—',
+          workers:    v.workers    || '—',
+          area:       v.area       || '—',
+          profession: v.profession || '—',
+          message:    v.details    || '—',
         })
       });
       const json = await res.json();
