@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ינאי פרסונל – כוח אדם מקצועי לענף הבנייה</title>
+<meta name="description" content="ינאי פרסונל – תאגיד מורשה לכוח אדם זר לענף הבנייה. רצפים, טייחים, ברזלנים, טפסנים. 054-233-1748">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+/* ─── RESET ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Heebo', 'Arial', sans-serif;
+  color: #1a1a1a;
+  background: #fff;
+  direction: rtl;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+
+/* ─── TOKENS ─── */
+:root {
+  --green:     #1C4A2A;
+  --green-mid: #245A36;
+  --green-dark: #12311C;
+  --lime:      #5DC832;
+  --lime-bright: #6FDF3A;
+  --lime-soft: #F1FAF0;
+  --off-white: #F9F9F7;
+  --dark:      #0A0A0A;
+  --gray:      #555;
+  --gray-light: #999;
+  --border:    #EAEAE8;
+  --shadow:    0 10px 30px -10px rgba(0,0,0,0.1);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── ANIMATIONS ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── NAV ─── */
+header {
+  position: fixed; top: 0; right: 0; left: 0; z-index: 1000;
+  background: transparent;
+  transition: var(--transition);
+  padding: 10px 0;
+}
+header.scrolled {
+  background: rgba(28,74,42,0.98);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  padding: 5px 0;
+}
+.nav-wrap {
+  max-width: 1240px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px; height: 60px;
+}
+.nav-logo img { height: 54px; width: auto; transition: var(--transition); border-radius: 8px; }
+.nav-links { list-style: none; display: flex; gap: 32px; align-items: center; }
+.nav-links a { color: #fff; font-size: 15px; font-weight: 500; transition: var(--transition); position: relative; }
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; right: 0; width: 0; height: 2px;
+  background: var(--lime); transition: var(--transition);
+}
+.nav-links a:hover { color: var(--lime); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-cta {
+  background: var(--lime); color: var(--green) !important;
+  font-weight: 800 !important; padding: 10px 24px;
+  border-radius: 8px; font-size: 15px !important;
+  transition: var(--transition);
+}
+.nav-cta:hover { background: var(--lime-bright) !important; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(93,200,50,0.3); }
+
+/* Hamburger Menu */
+.nav-toggle {
+  display: none;
+  background: none; border: none; cursor: pointer;
+  padding: 10px; z-index: 1100;
+}
+.hamburger {
+  display: block; width: 24px; height: 2px;
+  background: #fff; position: relative; transition: var(--transition);
+}
+.hamburger::before, .hamburger::after {
+  content: ''; position: absolute; width: 24px; height: 2px;
+  background: #fff; transition: var(--transition);
+}
+.hamburger::before { top: -8px; }
+.hamburger::after { bottom: -8px; }
+
+.nav-toggle.open .hamburger { background: transparent; }
+.nav-toggle.open .hamburger::before { transform: rotate(45deg); top: 0; }
+.nav-toggle.open .hamburger::after { transform: rotate(-45deg); bottom: 0; }
+
+@media (max-width: 960px) {
+  .nav-toggle { display: block; }
+  .nav-links {
+    position: fixed; top: 0; right: -100%; width: 80%; height: 100vh;
+    background: var(--green); flex-direction: column; justify-content: center;
+    transition: var(--transition); z-index: 1050; padding: 40px; gap: 40px;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+  }
+  .nav-links.open { right: 0; }
+  .nav-links a { font-size: 20px; }
+}
+
+.nav-wa {
+  display: flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; background: #25D366; color: #fff !important;
+  border-radius: 50%; transition: var(--transition);
+  box-shadow: 0 4px 10px rgba(37,211,102,0.2);
+}
+.nav-wa:hover { transform: scale(1.1); box-shadow: 0 6px 15px rgba(37,211,102,0.3); }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  background:
+    linear-gradient(135deg, rgba(10,28,14,0.85) 0%, rgba(15,40,20,0.65) 55%, rgba(10,28,14,0.8) 100%),
+    url('assets/background/DJI_20260315113113_0001_V_snapshot_20260517_1251.jpg') center/cover no-repeat;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 140px 24px 80px;
+}
+.hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(93,200,50,0.15);
+  border: 1px solid rgba(93,200,50,0.3);
+  color: var(--lime); font-size: 14px; font-weight: 600;
+  padding: 8px 20px; border-radius: 100px; margin-bottom: 32px;
+  animation: fadeInDown 0.8s ease-out;
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-eyebrow-dot { width: 8px; height: 8px; background: var(--lime); border-radius: 50%; box-shadow: 0 0 10px var(--lime); }
+.hero h1 {
+  font-size: clamp(40px, 6vw, 76px);
+  font-weight: 900; line-height: 1.1; color: #fff;
+  margin-bottom: 28px; max-width: 900px;
+  letter-spacing: -1.5px;
+}
+.hero h1 em { color: var(--lime); font-style: normal; position: relative; }
+.hero-lead {
+  font-size: clamp(18px, 2vw, 22px);
+  color: rgba(255,255,255,0.8); max-width: 600px;
+  margin-bottom: 50px; font-weight: 300; line-height: 1.7;
+}
+.hero-actions { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+.btn-lime {
+  background: var(--lime); color: var(--green);
+  font-weight: 800; font-size: 17px;
+  padding: 16px 36px; border-radius: 10px;
+  transition: var(--transition);
+  display: inline-flex; align-items: center; gap: 12px;
+  border: none; cursor: pointer; font-family: inherit;
+}
+.btn-lime:hover { background: var(--lime-bright); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(93,200,50,0.3); }
+.btn-ghost {
+  border: 2px solid rgba(255,255,255,0.3);
+  color: #fff; font-weight: 600; font-size: 17px;
+  padding: 15px 34px; border-radius: 10px;
+  transition: var(--transition);
+  display: inline-flex; align-items: center; gap: 12px;
+}
+.btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.1); transform: translateY(-3px); }
+
+.hero-stats {
+  display: flex; gap: 60px; margin-top: 90px;
+  padding-top: 50px; border-top: 1px solid rgba(255,255,255,0.15);
+  flex-wrap: wrap;
+}
+.hero-stat .num {
+  font-size: 48px; font-weight: 900; color: var(--lime); line-height: 1;
+  letter-spacing: -1px; margin-bottom: 8px;
+}
+.hero-stat .label { font-size: 14px; color: rgba(255,255,255,0.6); font-weight: 500; letter-spacing: 0.5px; }
+
+/* ─── SECTION BASE ─── */
+section { padding: 120px 24px; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.eyebrow {
+  display: inline-block;
+  font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--lime); margin-bottom: 20px;
+}
+.section-title {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 900; line-height: 1.15; color: var(--green);
+  margin-bottom: 24px; letter-spacing: -0.5px;
+}
+.section-sub {
+  font-size: 18px; color: var(--gray); max-width: 600px; line-height: 1.8;
+}
+.text-center { text-align: center; }
+.sub-centered { margin: 0 auto 80px; text-align: center; }
+
+/* ─── TRUST BAR ─── */
+.trust-bar {
+  background: #fff;
+  padding: 40px 24px;
+  margin-top: -60px; position: relative; z-index: 10;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.08);
+  border-radius: 20px; max-width: 1200px; margin-left: auto; margin-right: auto;
+}
+.trust-inner {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px;
+}
+.trust-item {
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 15px;
+  padding: 10px;
+}
+.trust-icon {
+  width: 44px; height: 44px; color: var(--lime); background: var(--lime-soft);
+  padding: 10px; border-radius: 12px;
+}
+.trust-text { font-size: 15px; color: var(--green); font-weight: 700; line-height: 1.4; }
+
+/* ─── ABOUT ─── */
+#about { background: var(--off-white); }
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 100px; align-items: center;
+}
+.about-img-wrap {
+  position: relative; border-radius: 24px; overflow: hidden;
+  aspect-ratio: 4/3; box-shadow: var(--shadow);
+}
+.about-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.about-img-wrap:hover img { transform: scale(1.05); }
+.about-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(28,74,42,0.6) 0%, transparent 60%);
+}
+.about-badge {
+  position: absolute; bottom: 30px; right: 30px;
+  background: var(--lime); color: var(--green);
+  font-size: 14px; font-weight: 800;
+  padding: 12px 24px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.about-features { margin-top: 50px; display: grid; gap: 32px; }
+.about-feature { display: flex; align-items: flex-start; gap: 20px; }
+.af-icon {
+  width: 56px; height: 56px; flex-shrink: 0;
+  background: #fff; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--green); box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.af-icon svg { width: 26px; height: 26px; }
+.af-title { font-size: 18px; font-weight: 800; color: var(--green); margin-bottom: 6px; }
+.af-text { font-size: 15px; color: var(--gray); line-height: 1.7; }
+
+/* ─── PROFESSIONS ─── */
+#professions { background: #fff; }
+.prof-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+}
+.prof-card {
+  border: 1px solid var(--border); border-radius: 20px;
+  padding: 44px 30px; cursor: default;
+  transition: var(--transition);
+  position: relative; overflow: hidden; background: #fff;
+}
+.prof-card::after {
+  content: ''; position: absolute; bottom: 0; right: 0; left: 0; height: 4px;
+  background: var(--lime); transform: scaleX(0); transform-origin: right;
+  transition: var(--transition);
+}
+.prof-card:hover {
+  border-color: var(--lime);
+  box-shadow: 0 20px 40px rgba(28,74,42,0.08);
+  transform: translateY(-8px);
+}
+.prof-card:hover::after { transform: scaleX(1); }
+.prof-icon-wrap {
+  width: 64px; height: 64px; background: var(--lime-soft);
+  border-radius: 16px; display: flex; align-items: center;
+  justify-content: center; color: var(--green); margin-bottom: 28px;
+}
+.prof-icon-wrap svg { width: 32px; height: 32px; }
+.prof-name { font-size: 24px; font-weight: 800; color: var(--green); margin-bottom: 6px; }
+.prof-name-en { font-size: 12px; color: var(--gray-light); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 18px; font-weight: 600; }
+.prof-desc { font-size: 15px; color: var(--gray); line-height: 1.7; }
+
+/* ─── HOW IT WORKS ─── */
+#how {
+  background: var(--green);
+  position: relative; overflow: hidden;
+}
+#how::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 20% 30%, rgba(93,200,50,0.05) 0%, transparent 50%);
+}
+#how .section-inner { position: relative; }
+#how .section-title { color: #fff; }
+#how .section-sub.sub-centered { color: rgba(255,255,255,0.7); margin-bottom: 80px; }
+.steps-wrap {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+}
+.step {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+  padding: 50px 36px; border-radius: 20px;
+  transition: var(--transition);
+  position: relative;
+}
+.step:hover { background: rgba(255,255,255,0.06); transform: translateY(-5px); border-color: rgba(93,200,50,0.3); }
+.step-num {
+  font-size: 64px; font-weight: 900; line-height: 1;
+  color: rgba(255,255,255,0.05); margin-bottom: 24px;
+  font-variant-numeric: tabular-nums;
+}
+.step-icon {
+  width: 52px; height: 52px; color: var(--lime);
+  margin-bottom: 24px;
+}
+.step-icon svg { width: 100%; height: 100%; }
+.step-title { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 14px; }
+.step-text { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.8; }
+
+/* ─── TESTIMONIALS ─── */
+#testimonials { background: var(--off-white); }
+.testi-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+}
+.testi-card {
+  background: #fff; padding: 40px; border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  display: flex; flex-direction: column; gap: 24px;
+  border: 1px solid var(--border);
+}
+.testi-quote { font-size: 16px; color: var(--gray); font-style: italic; line-height: 1.8; position: relative; }
+.testi-quote::before {
+  content: '“'; position: absolute; top: -10px; right: -10px;
+  font-size: 60px; color: var(--lime); opacity: 0.2; font-family: serif;
+}
+.testi-user { display: flex; align-items: center; gap: 16px; }
+.testi-avatar {
+  width: 50px; height: 50px; border-radius: 50%; background: var(--lime-soft);
+  display: flex; align-items: center; justify-content: center; color: var(--green); font-weight: 800;
+}
+.testi-name { font-weight: 800; color: var(--green); font-size: 16px; }
+.testi-role { font-size: 13px; color: var(--gray-light); margin-top: 2px; }
+
+/* ─── GALLERY ─── */
+#gallery { background: #fff; }
+.gallery-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+}
+.gallery-item {
+  border-radius: 16px; overflow: hidden; position: relative; aspect-ratio: 1;
+}
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.gallery-item:hover img { transform: scale(1.1); }
+.gallery-item::after {
+  content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+  opacity: 0; transition: var(--transition);
+}
+.gallery-item:hover::after { opacity: 1; }
+
+/* ─── WHY ─── */
+#why { background: var(--off-white); }
+.why-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+}
+.why-card {
+  padding: 48px 36px; border: 1px solid var(--border); border-radius: 24px; background: #fff;
+  transition: var(--transition);
+}
+.why-card:hover {
+  border-color: var(--lime);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+  transform: translateY(-5px);
+}
+.why-icon {
+  width: 60px; height: 60px; background: var(--lime-soft);
+  border-radius: 16px; display: flex; align-items: center;
+  justify-content: center; color: var(--green); margin-bottom: 30px;
+}
+.why-icon svg { width: 30px; height: 30px; }
+.why-title { font-size: 20px; font-weight: 800; color: var(--green); margin-bottom: 14px; }
+.why-text { font-size: 15px; color: var(--gray); line-height: 1.8; }
+
+/* ─── FAQ ─── */
+#faq { background: #fff; }
+.faq-grid { max-width: 800px; margin: 0 auto; display: grid; gap: 20px; }
+.faq-item { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.faq-question {
+  padding: 20px 24px; background: var(--off-white); font-weight: 800; color: var(--green);
+  cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+}
+.faq-answer { padding: 20px 24px; color: var(--gray); line-height: 1.7; display: none; background: #fff; border-top: 1px solid var(--border); }
+.faq-item.active .faq-answer { display: block; }
+.faq-item.active .faq-question { background: var(--lime-soft); }
+
+/* ─── CONTACT ─── */
+#contact { background: #fff; }
+.contact-wrap {
+  display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start;
+}
+.cinfo-block { margin-top: 50px; display: grid; gap: 30px; }
+.cinfo-row { display: flex; align-items: center; gap: 20px; }
+.cinfo-icon {
+  width: 56px; height: 56px; flex-shrink: 0;
+  background: var(--lime-soft); border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--green); transition: var(--transition);
+}
+.cinfo-row:hover .cinfo-icon { background: var(--lime); color: #fff; transform: scale(1.1); }
+.cinfo-icon svg { width: 26px; height: 26px; }
+.cinfo-label { font-size: 12px; color: var(--gray-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; font-weight: 600; }
+.cinfo-val { font-size: 18px; font-weight: 800; color: var(--green); }
+
+.hours-box {
+  margin-top: 50px; padding: 30px;
+  background: var(--off-white); border-radius: 20px;
+  border-right: 4px solid var(--lime);
+}
+
+.contact-form-box {
+  background: #fff; border-radius: 24px; padding: 50px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.fg input, .fg textarea, .fg select {
+  width: 100%; padding: 15px 20px;
+  border: 1.5px solid var(--border);
+  border-radius: 12px; font-size: 16px; transition: var(--transition);
+  background: var(--off-white);
+}
+.fg input:focus, .fg textarea:focus, .fg select:focus {
+  background: #fff; border-color: var(--lime);
+  box-shadow: 0 0 0 4px rgba(93,200,50,0.1);
+}
+.form-submit {
+  width: 100%; padding: 18px;
+  background: var(--green); color: #fff;
+  font-size: 17px; font-weight: 800; border-radius: 12px;
+  transition: var(--transition);
+}
+.form-submit:hover { background: var(--green-mid); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(28,74,42,0.2); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--dark); color: rgba(255,255,255,0.5);
+  padding: 80px 24px 40px;
+}
+.footer-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; align-items: start;
+}
+.footer-logo img { height: 44px; filter: brightness(0) invert(1); opacity: 0.8; }
+.footer-links { display: grid; gap: 12px; }
+.footer-links a { font-size: 15px; color: rgba(255,255,255,0.6); transition: var(--transition); }
+.footer-links a:hover { color: var(--lime); padding-right: 5px; }
+.footer-bottom {
+  margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex; justify-content: space-between; align-items: center; font-size: 14px;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .prof-grid, .why-grid, .testi-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-grid { gap: 60px; }
+}
+@media (max-width: 768px) {
+  section { padding: 80px 24px; }
+  .hero { padding-top: 120px; text-align: center; }
+  .hero-inner { display: flex; flex-direction: column; align-items: center; }
+  .hero h1 { font-size: 42px; }
+  .hero-actions { justify-content: center; }
+  .hero-stats { justify-content: center; gap: 40px; }
+  .trust-inner { grid-template-columns: 1fr 1fr; }
+  .about-grid { grid-template-columns: 1fr; }
+  .prof-grid, .why-grid, .testi-grid, .steps-wrap, .gallery-grid { grid-template-columns: 1fr; }
+  .contact-wrap { grid-template-columns: 1fr; gap: 50px; }
+  .contact-form-box { padding: 30px 20px; }
+  .footer-inner { grid-template-columns: 1fr; text-align: center; }
+  .footer-logo, .footer-links { justify-content: center; align-items: center; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<header id="hdr">
+  <div class="nav-wrap">
+    <a href="#" class="nav-logo">
+      <img src="assets/logos/square logo without details.jpg" alt="ינאי פרסונל">
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="תפריט">
+      <span class="hamburger"></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">אודותינו</a></li>
+      <li><a href="#professions">מקצועות</a></li>
+      <li><a href="#how">איך עובדים</a></li>
+      <li><a href="#why">למה אנחנו</a></li>
+      <li><a href="https://wa.me/972542331748" target="_blank" class="nav-wa" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a></li>
+      <li><a href="#contact" class="nav-cta">צרו קשר</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-dot"></span>
+      תאגיד מורשה להעסקת עובדים זרים בענף הבנייה
+    </div>
+    <h1>מחפשים עובדים <br><em>אמינים, מקצועיים</em><br>וזמינים מיידית?</h1>
+    <p class="hero-lead">
+      הכירו את העובדים הזרים שלנו – הפתרון המושלם לצרכים של ענף הבנייה. עובדים מיומנים מהודו, תאילנד, מולדובה, סרי לנקה ועוד.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-lime">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 1.06h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        דברו איתנו עכשיו
+      </a>
+      <a href="#professions" class="btn-ghost">
+        המקצועות שלנו
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num">200+</div>
+        <div class="label">עובדים מיומנים</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">4</div>
+        <div class="label">מקצועות מובילים</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">100%</div>
+        <div class="label">מורשה ומוסמך</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TRUST BAR ══════════ -->
+<div class="trust-bar reveal">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+      <span class="trust-text">עובדים מאומתים ומוסמכים</span>
+    </div>
+    <div class="trust-item">
+      <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+      <span class="trust-text">ניהול מלא של הבירוקרטיה</span>
+    </div>
+    <div class="trust-item">
+      <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span class="trust-text">תגובה תוך 24 שעות</span>
+    </div>
+    <div class="trust-item">
+      <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+      <span class="trust-text">כוח אדם בינלאומי מקצועי</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ ABOUT ══════════ -->
+<section id="about" class="reveal">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-img-wrap">
+        <img src="assets/WhatsApp Image 2025-04-01 at 10.33.47_123bebd4.jpg" alt="צוות ינאי פרסונל בעבודה" loading="lazy">
+        <div class="about-img-overlay"></div>
+        <div class="about-badge">✓ תאגיד מורשה</div>
+      </div>
+      <div>
+        <span class="eyebrow">מי אנחנו</span>
+        <h2 class="section-title">ינאי פרסונל –<br>כוח אדם שניתן לסמוך עליו</h2>
+        <p style="font-size:17px;color:var(--gray);line-height:1.8;margin-bottom:20px;">
+          ינאי פרסונל הינה חברה בעלת היתר ורישיון להעסקת עובדים זרים בענף הבנייה. אנחנו מספקים עובדים מקצועיים מהודו, תאילנד, מולדובה, סרי לנקה ועוד — כולם בעלי ניסיון מוכח בענף וזמינים להתחלה מיידית.
+        </p>
+        <div class="about-features">
+          <div class="about-feature">
+            <div class="af-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+            <div>
+              <div class="af-title">מיון מדויק לפי מקצוע</div>
+              <div class="af-text">כל עובד נבדק ומאומת — ניסיון, הסמכות ועמידה בתקנים — לפני שיבוצו.</div>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="af-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <div>
+              <div class="af-title">ניהול כל הבירוקרטיה</div>
+              <div class="af-text">היתרי עבודה, ביטוחים, חוזים — אנחנו מטפלים בהכל מול הרשויות.</div>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="af-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            </div>
+            <div>
+              <div class="af-title">ליווי אישי לאורך הפרויקט</div>
+              <div class="af-text">נציג אישי עומד לרשותכם מרגע הפנייה ועד סיום ההתקשרות.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PROFESSIONS ══════════ -->
+<section id="professions" class="reveal">
+  <div class="section-inner">
+    <div class="text-center" style="margin-bottom:60px;">
+      <span class="eyebrow">המקצועות שלנו</span>
+      <h2 class="section-title">פתרונות כוח אדם<br>לכל שלב בבנייה</h2>
+      <p class="section-sub sub-centered">מעבודות השלד ועד הגמר — יש לנו את האנשים הנכונים לכל מקצוע</p>
+    </div>
+    <div class="prof-grid">
+      <div class="prof-card">
+        <div class="prof-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <div class="prof-name">רצפים</div>
+        <div class="prof-name-en">Tilers</div>
+        <div class="prof-desc">ריצוף, פורצלן, שיש, גרניט ואבן טבעית. עבודת גמר ברמה גבוהה לכל סוגי הרצפות.</div>
+      </div>
+      <div class="prof-card">
+        <div class="prof-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M6 20V10l6-7 6 7v10"/><path d="M10 20v-5h4v5"/></svg>
+        </div>
+        <div class="prof-name">טייחים</div>
+        <div class="prof-name-en">Plasterers</div>
+        <div class="prof-desc">טיח פנים וחוץ, גבס, שפכטל וציפויים. עבודה נקייה ומדויקת לכל סוגי המבנים.</div>
+      </div>
+      <div class="prof-card">
+        <div class="prof-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><path d="M3 20h18"/></svg>
+        </div>
+        <div class="prof-name">ברזלנים</div>
+        <div class="prof-name-en">Ironworkers</div>
+        <div class="prof-desc">ברזל שלד, עמודים, קורות, יציקות בטון ועבודות תמך לפרויקטי בנייה גדולים.</div>
+      </div>
+      <div class="prof-card">
+        <div class="prof-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 2 2 7 2 17 11 22 20 17 20 7 11 2"/><line x1="11" y1="2" x2="11" y2="22"/><line x1="2" y1="7" x2="20" y2="7"/><line x1="2" y1="17" x2="20" y2="17"/></svg>
+        </div>
+        <div class="prof-name">טפסנים</div>
+        <div class="prof-name-en">Formworkers</div>
+        <div class="prof-desc">תבניות לעמודים, קורות, תקרות ויסודות — בכל שלבי בניית השלד.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ HOW IT WORKS ══════════ -->
+<section id="how" class="reveal">
+  <div class="section-inner">
+    <div class="text-center">
+      <span class="eyebrow" style="color:var(--lime);">תהליך העבודה</span>
+      <h2 class="section-title">ארבעה שלבים פשוטים</h2>
+      <p class="section-sub sub-centered">מהפנייה הראשונה ועד לפועלים בשטח — תהליך ברור, מהיר ומקצועי</p>
+    </div>
+    <div class="steps-wrap">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 1.06h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div class="step-title">אתם יוצרים קשר</div>
+        <div class="step-text">פנייה בטלפון, וואטסאפ או דרך האתר. נחזור אליכם תוך 24 שעות.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="step-title">אנחנו מתאימים</div>
+        <div class="step-text">נפגשים ומתאימים כוח אדם לצרכי הפרויקט הספציפיים שלכם.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="9 15 11 17 15 13"/></svg>
+        </div>
+        <div class="step-title">מטפלים בניירת</div>
+        <div class="step-text">חוזים, היתרים, ביטוחים — אנחנו מסדרים הכל מול הרשויות.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="step-title">הפועלים בשטח</div>
+        <div class="step-text">הפרויקט מתחיל. אנחנו ממשיכים ללוות לאורך כל הדרך.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TESTIMONIALS ══════════ -->
+<section id="testimonials" class="reveal">
+  <div class="section-inner">
+    <div class="text-center">
+      <span class="eyebrow">המלצות</span>
+      <h2 class="section-title">לקוחות מספרים</h2>
+      <p class="section-sub sub-centered">הנה מה שיש למנהלי פרויקטים וקבלנים לומר על העבודה איתנו</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <p class="testi-quote">"השירות מהיר, העובדים מקצועיים, והחברה זמינה תמיד לכל שאלה. פתרון מעולה למחסור בכוח אדם!"</p>
+        <div class="testi-user">
+          <div class="testi-avatar">יו</div>
+          <div>
+            <div class="testi-name">יוסי</div>
+            <div class="testi-role">קבלן בנייה, אזור המרכז</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">"שירות יוצא דופן וליווי אישי לאורך כל הדרך. הם דאגו לכל הבירוקרטיה ואיפשרו לנו להתמקד בבנייה נטו."</p>
+        <div class="testi-user">
+          <div class="testi-avatar">מל</div>
+          <div>
+            <div class="testi-name">משה לוי</div>
+            <div class="testi-role">קבלן שלד עצמאי</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">"מצאנו בינאי פרסונל שותף אמיתי. כוח האדם מיומן, ממושמע ומבין את הצרכים של אתר בנייה מודרני."</p>
+        <div class="testi-user">
+          <div class="testi-avatar">דג</div>
+          <div>
+            <div class="testi-name">דני גולן</div>
+            <div class="testi-role">מנהל עבודה ראשי, "גולן הנדסה"</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ GALLERY ══════════ -->
+<section id="gallery" class="reveal">
+  <div class="section-inner">
+    <div class="gallery-head">
+      <span class="eyebrow">מהשטח</span>
+      <h2 class="section-title">פרויקטים שביצענו</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="assets/תמונה של WhatsApp‏ 2025-01-29 בשעה 11.45.47_e6a0a8ad.jpg" alt="צוות ינאי פרסונל בשטח" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="assets/.jpg" alt="עבודות בנייה מקצועיות" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=82" alt="עבודות בנייה" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?w=800&q=82" alt="אתר בנייה" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ WHY ══════════ -->
+<section id="why" class="reveal">
+  <div class="section-inner">
+    <div class="text-center">
+      <span class="eyebrow">למה לבחור בנו</span>
+      <h2 class="section-title">מקצוענות שניתן<br>לסמוך עליה</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="why-title">עובדים מיומנים בלבד</div>
+        <div class="why-text">כל עובד עובר מיון קפדני לפי ניסיון, הסמכות ורישיונות — לפני שיבוצו בפרויקט.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="why-title">גיוס מהיר</div>
+        <div class="why-text">מרגע הפנייה ועד לשיבוץ בשטח — תוך ימים ספורים. כי הפרויקט שלכם לא יכול לחכות.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="why-title">ניהול מלא של הניירת</div>
+        <div class="why-text">היתרי עבודה, ביטוחים, חוזים — אנחנו מטפלים בהכל כדי שתתמקדו בפרויקט.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        </div>
+        <div class="why-title">כוח אדם בינלאומי</div>
+        <div class="why-text">גישה למאגר עובדים מרחבי העולם עם ניסיון בסטנדרטים הגבוהים של הבנייה בישראל.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        </div>
+        <div class="why-title">ליווי אישי</div>
+        <div class="why-text">נציג אישי מלווה אתכם מהגיוס ועד סיום הפרויקט — זמין לכל שאלה ובעיה.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="why-title">מורשה ומוסמך</div>
+        <div class="why-text">בעלי היתר ורישיון מלאים מרשות האוכלוסין וההגירה להעסקת עובדים זרים בבנייה.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CONTACT ══════════ -->
+<section id="contact" class="reveal">
+  <div class="section-inner">
+    <div class="contact-wrap">
+      <div>
+        <span class="eyebrow">צרו קשר</span>
+        <h2 class="section-title">בואו נדבר<br>על הפרויקט</h2>
+        <p class="contact-lead" style="font-size:17px;color:var(--gray);margin-top:10px;">מלאו את הטופס ונציג שלנו יחזור אליכם תוך 24 שעות עם הצעה מותאמת.</p>
+        <div class="cinfo-block">
+          <div class="cinfo-row">
+            <div class="cinfo-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 1.06h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="cinfo-label">טלפון ו-WhatsApp</div>
+              <div class="cinfo-val"><a href="tel:0542331748" style="color:var(--green);">054-233-1748</a></div>
+            </div>
+          </div>
+          <div class="cinfo-row">
+            <div class="cinfo-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="cinfo-label">מייל</div>
+              <div class="cinfo-val"><a href="mailto:office@yanai-p.co.il" style="color:var(--green);">office@yanai-p.co.il</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="hours-box">
+          <div style="font-size: 14px; font-weight: 800; color: var(--green); margin-bottom: 10px; text-transform: uppercase;">שעות פעילות</div>
+          <div style="font-size: 15px; color: var(--gray); line-height: 1.8;">ראשון – חמישי: 08:00 – 18:00<br>שישי: 08:00 – 13:00</div>
+        </div>
+      </div>
+
+      <div class="contact-form-box">
+        <div style="font-size: 24px; font-weight: 900; color: var(--green); margin-bottom: 8px;">שלחו פנייה</div>
+        <div style="font-size: 15px; color: var(--gray); margin-bottom: 36px;">נחזור אליכם תוך 24 שעות עם הצעה מותאמת לפרויקט</div>
+        <form id="cForm" onsubmit="handleForm(event)">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+            <div class="fg">
+              <label style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">שם מלא *</label>
+              <input type="text" placeholder="שמכם המלא" required>
+            </div>
+            <div class="fg">
+              <label style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">טלפון *</label>
+              <input type="tel" placeholder="05X-XXXXXXX" required>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+            <div class="fg">
+              <label style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">שם חברה</label>
+              <input type="text" placeholder="שם החברה / הקבלן">
+            </div>
+            <div class="fg">
+              <label style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">מספר עובדים דרוש</label>
+              <input type="number" placeholder="כמות עובדים">
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+            <div class="fg">
+              <label style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">אזור בארץ</label>
+              <input type="text" placeholder="מיקום הפרויקט">
+            </div>
+            <div class="fg">
+              <label style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">מקצוע נדרש</label>
+              <select>
+                <option value="">-- בחרו --</option>
+                <option>רצפים</option>
+                <option>טייחים</option>
+                <option>ברזלנים</option>
+                <option>טפסנים</option>
+                <option>שילוב מקצועות</option>
+              </select>
+            </div>
+          </div>
+          <div class="fg" style="margin-bottom: 24px;">
+            <label style="display: block; font-size: 12px; font-weight: 800; color: var(--green); margin-bottom: 8px;">פרטי הפרויקט</label>
+            <textarea placeholder="מיקום הפרויקט, לוח זמנים, כל פרט שיסייע לנו..." style="min-height: 120px;"></textarea>
+          </div>
+          <button type="submit" class="form-submit">שלחו לי פרטים עכשיו</button>
+          <div class="form-success" id="formOK">
+            הפנייה התקבלה — נחזור אליכם בהקדם.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FAQ ══════════ -->
+<section id="faq" class="reveal">
+  <div class="section-inner">
+    <div class="text-center">
+      <span class="eyebrow">שאלות ותשובות</span>
+      <h2 class="section-title">כל מה שחשוב לדעת</h2>
+      <p class="section-sub sub-centered">ריכזנו עבורכם תשובות לשאלות הנפוצות ביותר בנושא העסקת עובדים זרים</p>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <div class="faq-question">מהם האתגרים הבירוקרטיים המרכזיים בהעסקת עובדים זרים? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-answer">המעסיקים נדרשים להתמודד עם הליך קבלת היתרים מורכב, עמידה בתקנות מחמירות, ביקורות ממשלתיות מתמשכות ודרישות לחידוש מסמכים באופן תקופתי. ינאי פרסונל מטפלת בכל התהליך עבורכם.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">כיצד ניתן לצמצם פערי שפה ותרבות בקרב עובדים זרים? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-answer">ניתן לשלב מתורגמנים, לספק הדרכות בשפת העובדים, להשתמש באמצעים חזותיים להוראות עבודה וליישם טכנולוגיות תרגום בזמן אמת. אנחנו מספקים ליווי מקצועי לגישור על פערים אלו.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">האם העסקת עובדים זרים פוגעת בכוח העבודה המקומי? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-answer">לא בהכרח. רבים מהעובדים הזרים ממלאים תפקידים שאין בהם היצע מספיק של עובדים מקומיים, והם מסייעים בקידום פרויקטים חשובים למשק הישראלי.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">מהם הפתרונות שיכולים להקל על תהליך הגיוס? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-answer">עבודה עם תאגיד מורשה כמו ינאי פרסונל מבטיחה סינון מועמדים קפדני, ניהול משאבי אנוש מתקדם ותקשורת רציפה, מה שהופך את התהליך ליעיל ומהיר יותר.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo" style="margin-bottom: 24px;">
+        <img src="assets/logos/horizontal logo with details.jpg" alt="ינאי פרסונל">
+      </div>
+      <p style="font-size: 15px; line-height: 1.7; max-width: 300px;">תאגיד מורשה להעסקת עובדים זרים בענף הבנייה. איכות, אמינות ומקצועיות ללא פשרות.</p>
+    </div>
+    <div class="footer-links">
+      <div style="font-weight: 800; color: #fff; margin-bottom: 12px;">ניווט מהיר</div>
+      <a href="#about">אודותינו</a>
+      <a href="#professions">מקצועות</a>
+      <a href="#how">איך עובדים</a>
+      <a href="#why">למה אנחנו</a>
+      <a href="#testimonials">המלצות</a>
+      <a href="#contact">צרו קשר</a>
+    </div>
+    <div>
+      <div style="font-weight: 800; color: #fff; margin-bottom: 12px;">פרטי קשר</div>
+      <p style="font-size: 15px; margin-bottom: 12px;">טלפון: 054-233-1748</p>
+      <p style="font-size: 15px; margin-bottom: 12px;">מייל: office@yanai-p.co.il</p>
+      <p style="font-size: 15px;">שעות פעילות: א'-ה' 08:00-18:00</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 ינאי פרסונל. כל הזכויות שמורות.</div>
+    <div style="display: flex; gap: 20px;">
+      <a href="#" style="color: inherit;">מדיניות פרטיות</a>
+      <a href="#" style="color: inherit;">תנאי שימוש</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════ JS ══════════ -->
+<script>
+// Nav Scroll Effect
+const header = document.getElementById('hdr');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Mobile Nav Toggle
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  navToggle.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+
+// Close mobile nav on link click
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    navToggle.classList.remove('open');
+    navLinks.classList.remove('open');
+  });
+});
+
+// Scroll Reveal Animation
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// FAQ Accordion
+document.querySelectorAll('.faq-question').forEach(question => {
+  question.addEventListener('click', () => {
+    const item = question.parentElement;
+    item.classList.toggle('active');
+  });
+});
+
+// Form Handling
+function handleForm(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  const originalText = btn.textContent;
+  btn.textContent = 'שולח...';
+  btn.disabled = true;
+  
+  setTimeout(() => {
+    document.getElementById('formOK').style.display = 'block';
+    btn.textContent = 'נשלח בהצלחה';
+    btn.style.background = 'var(--lime)';
+    btn.style.color = 'var(--green)';
+    e.target.reset();
+  }, 1200);
+}
+
+// Smooth Anchor Scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const targetId = this.getAttribute('href');
+    if (targetId === '#') return;
+    
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      e.preventDefault();
+      const headerOffset = 80;
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+</script>
+</body>
+</html>
